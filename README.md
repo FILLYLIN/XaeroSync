@@ -1,4 +1,5 @@
 # XaeroSync
+<small>*ai生成注意甄别</small>
 
 Velocity 代理端插件，解决 Xaero 小地图/世界地图在群组服跨服时的数据丢失问题。
 
