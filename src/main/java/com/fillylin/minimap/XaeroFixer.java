@@ -14,16 +14,16 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
-@Plugin(id = “xaerosync”, name = “XaeroMapSync”, version = “1.1”, authors = {“FILLYLIN”})
+@Plugin(id = "xaerosync", name = "XaeroMapSync", version = "1.1", authors = {"FILLYLIN"})
 public class XaeroFixer {
 
     private final ProxyServer server;
     private final Logger logger;
 
     private static final MinecraftChannelIdentifier MINIMAP_CHANNEL =
-            MinecraftChannelIdentifier.create(“xaerominimap”, “main”);
+            MinecraftChannelIdentifier.create("xaerominimap", "main");
     private static final MinecraftChannelIdentifier WORLDMAP_CHANNEL =
-            MinecraftChannelIdentifier.create(“xaeroworldmap”, “main”);
+            MinecraftChannelIdentifier.create("xaeroworldmap", "main");
 
     private final Map<String, byte[]> payloadCache = new ConcurrentHashMap<>();
 
@@ -36,7 +36,7 @@ public class XaeroFixer {
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
         server.getChannelRegistrar().register(MINIMAP_CHANNEL, WORLDMAP_CHANNEL);
-        logger.info(“Xaero跨服地图修复插件(心跳防掉版 v1.1) 已启动！”);
+        logger.info("Xaero跨服地图修复插件(心跳防掉版 v1.1) 已启动!");
 
         server.getScheduler().buildTask(this, () -> {
             for (Player player : server.getAllPlayers()) {
