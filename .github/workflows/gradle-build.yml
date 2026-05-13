@@ -2,36 +2,32 @@ name: Build Gradle JAR
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 1. 检出代码
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: 2. 设置 JDK 17
+      - name: Setup JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
-          cache: 'gradle'          # 缓存 Gradle 依赖
 
-      - name: 3. 为 gradlew 脚本添加执行权限
-        run: chmod +x gradlew
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
 
-      - name: 4. 使用 Gradle 构建 JAR 包
-        run: ./gradlew build       # 这个任务会编译、测试并打包
+      - name: Build with Gradle
+        run: gradle build
 
-      # 如果你的项目需要特定的打包任务，也可以使用:
-      # run: ./gradlew jar
-
-      - name: 5. 上传 JAR 文件
+      - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
-          name: my-gradle-jar
-          path: build/libs/*.jar    # Gradle 打包后 JAR 文件所在的目录
+          name: XaeroSync
+          path: build/libs/*.jar
