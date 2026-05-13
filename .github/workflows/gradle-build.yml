@@ -1,8 +1,9 @@
-name: Build Gradle JAR
+name: Build and Release
 
 on:
   push:
     branches: ["master"]
+    tags: ["v*"]
   pull_request:
     branches: ["master"]
 
@@ -31,3 +32,10 @@ jobs:
         with:
           name: XaeroSync
           path: build/libs/*.jar
+
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/libs/*.jar
+          generate_release_notes: true
